@@ -1,0 +1,22 @@
+{
+  "name": "bun-playground",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun src/index.html",
+    "build": "bun build src/index.html --outdir dist --minify --production",
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "bun-plugin-tailwind": "^0.0.15",
+    "happy-dom": "^17.4.4"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "tailwindcss": "^4.0.13"
+  }
+}
