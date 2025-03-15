@@ -1,26 +1,33 @@
 {
-  "name": "bun-playground",
-  "module": "index.ts",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "dev": "bun src/index.html",
-    "build": "bun build src/index.html --outdir dist --minify --production",
-    "test": "bun test",
-    "format": "bunx @biomejs/biome format --write .",
-    "lint": "bunx @biomejs/biome lint .",
-    "check": "bunx @biomejs/biome check ."
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@types/bun": "latest",
-    "bun-plugin-tailwind": "^0.0.15",
-    "happy-dom": "^17.4.4"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
-  "dependencies": {
-    "tailwindcss": "^4.0.14"
-  }
+	"name": "bun-playground",
+	"module": "index.ts",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"dev": "bun src/index.html",
+		"build": "bun build src/index.html --outdir dist --minify --production",
+		"test": "bun test",
+		"format": "bunx prettier --write .",
+		"lint:style": "bunx stylelint \"**/*.{css,scss}\" --fix",
+		"lint:html": "bunx markuplint \"**/*.{html}\" --fix",
+		"lint": "bun run lint:style && bun run lint:html",
+		"check": "bunx @biomejs/biome check ."
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@types/bun": "latest",
+		"bun-plugin-tailwind": "^0.0.15",
+		"happy-dom": "^17.4.4",
+		"markuplint": "^4.11.8",
+		"prettier": "^3.5.3",
+		"stylelint": "^16.16.0",
+		"stylelint-config-prettier": "^9.0.5",
+		"stylelint-config-standard": "^37.0.0"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	},
+	"dependencies": {
+		"tailwindcss": "^4.0.14"
+	}
 }

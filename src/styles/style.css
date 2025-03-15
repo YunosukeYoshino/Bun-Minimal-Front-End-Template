@@ -1,1 +1,25 @@
-@import "tailwindcss";
+@import url('tailwindcss');
+
+@layer utilities {
+	.bg-main-image {
+		background-image: url('../images/sample.jpeg');
+		background-repeat: no-repeat;
+	}
+
+	.animate-gradient {
+		background-size: 200% 200%;
+		animation: gradientAnimation 10s ease infinite;
+	}
+}
+
+@keyframes gradientAnimation {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}

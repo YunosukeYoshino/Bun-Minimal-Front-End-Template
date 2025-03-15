@@ -1,9 +1,10 @@
 {
-  "recommendations": [
-    "biomejs.biome",
-    "stylelint.vscode-stylelint",
-    "esbenp.prettier-vscode",
-    "markuplint.markuplint",
-    "Trapfether.tailwind-raw-reorder"
-  ]
+	"recommendations": [
+		"biomejs.biome",
+		"stylelint.vscode-stylelint",
+		"esbenp.prettier-vscode",
+		"yusukehirao.vscode-markuplint",
+		"Trapfether.tailwind-raw-reorder",
+		"bradlc.vscode-tailwindcss"
+	]
 }
