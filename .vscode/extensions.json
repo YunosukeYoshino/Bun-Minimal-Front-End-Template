@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "biomejs.biome",
+    "stylelint.vscode-stylelint",
+    "esbenp.prettier-vscode",
+    "markuplint.markuplint",
+    "Trapfether.tailwind-raw-reorder"
+  ]
+}

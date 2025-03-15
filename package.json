@@ -6,9 +6,13 @@
   "scripts": {
     "dev": "bun src/index.html",
     "build": "bun build src/index.html --outdir dist --minify --production",
-    "test": "bun test"
+    "test": "bun test",
+    "format": "bunx @biomejs/biome format --write .",
+    "lint": "bunx @biomejs/biome lint .",
+    "check": "bunx @biomejs/biome check ."
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@types/bun": "latest",
     "bun-plugin-tailwind": "^0.0.15",
     "happy-dom": "^17.4.4"
