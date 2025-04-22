@@ -11,12 +11,15 @@
 		"lint:style": "bunx stylelint \"**/*.{css,scss}\" --fix",
 		"lint:html": "bunx markuplint \"**/*.{html}\" --fix",
 		"lint": "bun run lint:style && bun run lint:html",
-		"check": "bunx @biomejs/biome check ."
+		"check": "bunx @biomejs/biome check .",
+		"generate-sitemap": "bun run generate-sitemap.ts"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
 		"@types/bun": "latest",
+		"@types/node": "^22.14.1",
 		"bun-plugin-tailwind": "^0.0.15",
+		"fast-glob": "^3.3.3",
 		"happy-dom": "^17.4.4",
 		"markuplint": "^4.11.8",
 		"prettier": "^3.5.3",
