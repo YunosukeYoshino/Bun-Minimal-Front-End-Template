@@ -1,47 +1,47 @@
-import { afterEach, beforeEach, describe, expect, test } from 'bun:test'
-import { Document, Window } from 'happy-dom'
+import { afterEach, beforeEach, describe, expect, test } from 'bun:test';
+import { Window } from 'happy-dom';
 import {
 	addButtonClass,
 	handleClickEvent,
 	toggleElementVisibility,
-} from '../scripts/domUtils'
+} from '../scripts/domUtils';
 
 // DOM環境のセットアップ
-const window = new Window()
-const document = window.document
+const window = new Window();
+const document = window.document;
 
 describe('DOM操作ユーティリティテスト', () => {
-	let testElement: HTMLElement
+	let testElement: HTMLElement;
 
 	beforeEach(() => {
-		testElement = document.createElement('div')
-		document.body.appendChild(testElement)
-	})
+		testElement = document.createElement('div');
+		document.body.appendChild(testElement);
+	});
 
 	afterEach(() => {
-		document.body.removeChild(testElement)
-	})
+		document.body.removeChild(testElement);
+	});
 
 	test('addButtonClassでクラスが追加される', () => {
-		addButtonClass(testElement, 'active')
-		expect(testElement.classList.contains('active')).toBe(true)
-	})
+		addButtonClass(testElement, 'active');
+		expect(testElement.classList.contains('active')).toBe(true);
+	});
 
 	test('toggleElementVisibilityで表示状態が切り替わる', () => {
-		toggleElementVisibility(testElement)
-		expect(testElement.style.display).toBe('none')
+		toggleElementVisibility(testElement);
+		expect(testElement.style.display).toBe('none');
 
-		toggleElementVisibility(testElement)
-		expect(testElement.style.display).toBe('block')
-	})
+		toggleElementVisibility(testElement);
+		expect(testElement.style.display).toBe('block');
+	});
 
 	test('handleClickEventでクリックイベントが発火する', () => {
-		let clicked = false
+		let clicked = false;
 		handleClickEvent(testElement, () => {
-			clicked = true
-		})
+			clicked = true;
+		});
 
-		testElement.click()
-		expect(clicked).toBe(true)
-	})
-})
+		testElement.click();
+		expect(clicked).toBe(true);
+	});
+});
