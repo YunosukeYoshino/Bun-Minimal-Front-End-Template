@@ -1,81 +1,143 @@
-# Bun フロントエンド開発テンプレート
+# Bun Minimal Front-End Template
 
-このリポジトリは、Viteの代わりに[Bun](https://bun.sh/)をフロントエンドのビルドツールとして使用し、HTML、CSS（Tailwind CSS）、TypeScriptを統合した最小限の開発環境テンプレートです。
+[![Bun](https://img.shields.io/badge/Bun-1.0+-black?logo=bun)](https://bun.sh)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38B2AC?logo=tailwindcss)](https://tailwindcss.com)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript)](https://www.typescriptlang.org)
 
-## 特徴
+A minimal front-end development template powered by [Bun](https://bun.sh). Supports both Vanilla JS and React with modern tooling out of the box.
 
-- **Bun**: 高速なJavaScriptランタイム、バンドラー、パッケージマネージャー、テストランナーをオールインワンで提供
-- **Tailwind CSS**: ユーティリティファーストのCSSフレームワークによる効率的なスタイリング
-- **TypeScript**: 型安全な開発環境
-- **happy-dom**: ブラウザ環境に依存しないDOMテスト環境
+## Overview
 
-## プロジェクト構造
+This template provides a streamlined development experience using Bun as the runtime, bundler, and test runner. It includes two starter applications:
 
-```
-src/
-├── index.html          # メインのHTMLファイル
-├── scripts/
-│   ├── domUtils.ts    # DOM操作ユーティリティ
-│   └── index.ts       # メインのTypeScriptファイル
-├── styles/
-│   └── style.css      # スタイルシート
-└── tests/
-    └── domUtils.test.ts # ユーティリティのテストファイル
-```
+- **Vanilla JS** — Simple HTML/CSS/TypeScript setup with DOM utilities
+- **React** — Modern React 19 app with [shadcn/ui](https://ui.shadcn.com) components
 
-## 使用技術
+### Features
 
-- **Bun** v1.0.0以降
-- **TypeScript** v5.x
-- **Tailwind CSS** v4.x
-- **happy-dom** v17.x（テスト環境用）
+- **Fast Development** — HMR and console streaming via Bun's dev server
+- **Modern Styling** — Tailwind CSS v4 with CSS variables for theming
+- **Type Safety** — TypeScript in strict mode
+- **Code Quality** — Biome, Stylelint, Markuplint, and Prettier pre-configured
+- **Testing** — Bun's built-in test runner with happy-dom
 
-## 機能
+## Prerequisites
 
-### DOM操作ユーティリティ
+- [Bun](https://bun.sh) v1.0 or later
 
-`domUtils.ts`には以下の機能が実装されています：
+## Getting Started
 
-- `addButtonClass`: 要素にクラスを追加
-- `toggleElementVisibility`: 要素の表示/非表示を切り替え
-- `handleClickEvent`: クリックイベントハンドラの設定
-
-これらの機能は全て、ユニットテストによって動作が検証されています。
-
-## 開発方法
-
-### 前提条件
-
-- Bunがインストールされていること
-
-Bunのインストール方法は、[公式ドキュメント](https://bun.sh/docs/installation)を参照してください。
-
-### セットアップ
+Clone the repository and install dependencies:
 
 ```bash
-# 依存パッケージのインストール
 bun install
 ```
 
-### 開発コマンド
+Start the development server:
 
 ```bash
-# 開発サーバーの起動
-bun dev
+# Fullstack dev server with HMR (recommended)
+bun run dev
 
-# プロダクションビルド
-bun build
-
-# テストの実行
-bun test
+# Or run individual apps
+bun run dev:vanilla   # Vanilla JS at http://localhost:3000
+bun run dev:react     # React at http://localhost:3000
 ```
 
-## テスト
+> [!TIP]
+> The `dev` command starts a unified server with routing:
+> - `/` → Vanilla JS app
+> - `/react` → React app
 
-テストは`happy-dom`を使用してブラウザ環境をシミュレートし、DOM操作の機能をテストしています。テストファイルは`src/tests`ディレクトリに配置されています。
+## Development
 
-各コンポーネントのテストは以下のような観点で実装されています：
+### Available Scripts
 
-- クラス追加の検証
-- 要素の表示/非表示の切り替え検証
-- イベントハンドリングの検証
+| Command | Description |
+|---------|-------------|
+| `bun run dev` | Start Fullstack Dev Server with HMR |
+| `bun run dev:vanilla` | Start Vanilla JS dev server |
+| `bun run dev:react` | Start React dev server |
+| `bun run build` | Production build (minified) |
+| `bun run build:dev` | Development build (with sourcemaps) |
+| `bun run test` | Run tests |
+| `bun run check` | Run Biome linter |
+| `bun run format` | Format code with Prettier |
+
+### Project Structure
+
+```
+src/
+├── index.html              # Vanilla JS entry
+├── scripts/                # Vanilla JS source
+├── styles/                 # Global styles
+├── tests/                  # Test files
+└── react/                  # React application
+    ├── components/
+    │   └── ui/             # shadcn/ui components
+    ├── hooks/              # Custom React hooks
+    └── lib/                # Utilities
+```
+
+## React Application
+
+The React app demonstrates modern patterns with shadcn/ui:
+
+- **Counter** — State management with `useCounter` hook
+- **Todo List** — CRUD operations with `useTodos` hook
+- **Dark Mode** — Theme switching with `useTheme` hook (persisted to localStorage)
+
+### Adding shadcn/ui Components
+
+Components are located in `src/react/components/ui/`. To add more:
+
+```bash
+bunx shadcn@latest add [component]
+```
+
+> [!NOTE]
+> Due to Bun's minimal setup, some shadcn CLI commands may require manual configuration. See `components.json` for current settings.
+
+## Configuration
+
+### Environment Variables
+
+Variables prefixed with `PUBLIC_` are inlined into the client bundle:
+
+```bash
+PUBLIC_API_URL=https://api.example.com bun run dev
+```
+
+### Build Configuration
+
+Edit `build.ts` to customize:
+
+```typescript
+const commonOptions = {
+  minify: !isDev,
+  sourcemap: isDev ? 'linked' : 'none',
+  splitting: true,
+  env: 'PUBLIC_*',
+};
+```
+
+## Testing
+
+Run tests with Bun's built-in test runner:
+
+```bash
+bun test              # Run all tests
+bun test --watch      # Watch mode
+bun test --coverage   # With coverage report
+```
+
+Tests use [happy-dom](https://github.com/capricorn86/happy-dom) to simulate browser environment.
+
+## Resources
+
+- [Bun Documentation](https://bun.sh/docs)
+- [React Documentation](https://react.dev)
+- [Tailwind CSS v4](https://tailwindcss.com/docs)
+- [shadcn/ui](https://ui.shadcn.com)
+- [Biome](https://biomejs.dev)
