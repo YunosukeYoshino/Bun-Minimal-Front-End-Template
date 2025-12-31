@@ -1,25 +1,17 @@
-import * as React from 'react';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { App } from './App.tsx';
 
-function App() {
-	const [spin, setSpin] = React.useState(false);
-	return (
-		<div>
-			<h1 className={`${spin ? 'animate-spin' : ''} text-rose-400`}>
-				Hello from React
-			</h1>
-			<button
-				type="button"
-				className="bg-indigo-400 text-white rounded-md p-2"
-				onClick={() => setSpin(!spin)}
-			>
-				Toggle Spin
-			</button>
-		</div>
+const rootElement = document.getElementById('root');
+
+if (!rootElement) {
+	throw new Error(
+		'Root element not found. Make sure there is a <div id="root"></div> in your HTML.',
 	);
 }
 
-const appElement = document.getElementById('app');
-if (appElement) {
-	createRoot(appElement).render(<App />);
-}
+createRoot(rootElement).render(
+	<StrictMode>
+		<App />
+	</StrictMode>,
+);
