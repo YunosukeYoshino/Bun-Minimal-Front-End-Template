@@ -26,8 +26,9 @@ src/
 ├── scripts/          # Vanilla JS
 ├── tests/            # テスト
 └── react/            # React アプリ
-    ├── components/ui/  # shadcn/ui
-    └── hooks/          # カスタムフック
+    ├── pages/          # 画面
+    ├── features/       # 機能モジュール
+    └── shared/         # 共通 (ui/, utils/)
 ```
 
 ## Instructions

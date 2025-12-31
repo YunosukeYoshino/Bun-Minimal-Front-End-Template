@@ -8,13 +8,16 @@ applyTo: "src/react/**"
 
 ```
 src/react/
-├── components/
-│   ├── ui/           # shadcn/ui primitives (button, card, input, checkbox)
-│   └── [Feature].tsx # Feature components (Counter, TodoList, Header)
-├── hooks/
-│   └── use[Feature].ts # Custom hooks (useCounter, useTodos, useTheme)
-└── lib/
-    └── utils.ts      # cn() utility for class merging
+├── main.tsx          # Entry point
+├── pages/            # Page components (Home.tsx)
+├── features/         # Feature modules
+│   └── [feature]/
+│       ├── components/
+│       ├── hooks/
+│       └── index.ts
+└── shared/
+    ├── ui/           # shadcn/ui primitives
+    └── utils/        # cn() utility
 ```
 
 ## Patterns
@@ -22,7 +25,7 @@ src/react/
 ### shadcn/ui Component
 
 ```tsx
-import { cn } from '../lib/utils';
+import { cn } from '../../shared/utils/cn';
 
 interface Props {
   className?: string;
@@ -51,10 +54,10 @@ export function useFeature(options = {}) {
 bunx shadcn@latest add [component]
 ```
 
-Components go to `src/react/components/ui/`.
+Components go to `src/react/shared/ui/`.
 
 ## Theme System
 
-- CSS variables defined in `src/react/style.css`
+- CSS variables defined in `src/react/styles/style.css`
 - Dark mode via `.dark` class on `<html>`
 - `useTheme` hook manages theme state (persisted to localStorage)

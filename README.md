@@ -74,10 +74,12 @@ src/
 ├── styles/                 # Global styles
 ├── tests/                  # Test files
 └── react/                  # React application
-    ├── components/
-    │   └── ui/             # shadcn/ui components
-    ├── hooks/              # Custom React hooks
-    └── lib/                # Utilities
+    ├── main.tsx            # Entry point
+    ├── pages/              # Page components
+    ├── features/           # Feature modules (counter, todos, theme)
+    └── shared/             # Shared code
+        ├── ui/             # shadcn/ui components
+        └── utils/          # Utilities (cn.ts)
 ```
 
 ## React Application
@@ -90,7 +92,7 @@ The React app demonstrates modern patterns with shadcn/ui:
 
 ### Adding shadcn/ui Components
 
-Components are located in `src/react/components/ui/`. To add more:
+Components are located in `src/react/shared/ui/`. To add more:
 
 ```bash
 bunx shadcn@latest add [component]
