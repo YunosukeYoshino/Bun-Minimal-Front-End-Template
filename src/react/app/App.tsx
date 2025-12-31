@@ -1,7 +1,6 @@
-import { Counter } from './components/Counter.tsx';
-import { Header } from './components/Header.tsx';
-import { TodoList } from './components/TodoList.tsx';
-import { useTheme } from './hooks/useTheme.ts';
+import { Counter } from '../modules/counter';
+import { Header, useTheme } from '../modules/theme';
+import { TodoList } from '../modules/todos';
 
 export function App() {
 	const { isDark, toggleTheme } = useTheme();
