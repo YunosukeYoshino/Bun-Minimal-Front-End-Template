@@ -17,17 +17,26 @@ interface UseTodosReturn {
 	pendingCount: number;
 }
 
+/**
+ * Todo リストの CRUD 操作を提供
+ *
+ * @example
+ * const { todos, addTodo, toggleTodo } = useTodos();
+ * addTodo('Buy milk');
+ */
 export function useTodos(initialTodos: Todo[] = []): UseTodosReturn {
 	const [todos, setTodos] = useState<Todo[]>(initialTodos);
 
 	const addTodo = useCallback((text: string) => {
-		if (!text.trim()) return;
+		if (!text.trim()) return; // 空白のみの入力は無視
+
 		const newTodo: Todo = {
 			id: crypto.randomUUID(),
 			text: text.trim(),
 			completed: false,
 			createdAt: new Date(),
 		};
+		// 新しいタスクは先頭に追加（最新のタスクが上に表示される）
 		setTodos((prev) => [newTodo, ...prev]);
 	}, []);
 
@@ -47,6 +56,7 @@ export function useTodos(initialTodos: Todo[] = []): UseTodosReturn {
 		setTodos((prev) => prev.filter((todo) => !todo.completed));
 	}, []);
 
+	// 派生状態: レンダリングごとに計算（メモ化不要なほど軽量）
 	const completedCount = todos.filter((todo) => todo.completed).length;
 	const pendingCount = todos.filter((todo) => !todo.completed).length;
 

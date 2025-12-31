@@ -1,5 +1,5 @@
 import { Minus, Plus, RotateCcw } from 'lucide-react';
-import { Button } from '../../../components/ui/button.tsx';
+import { Button } from '../../../shared/ui/button.tsx';
 import {
 	Card,
 	CardContent,
@@ -7,7 +7,7 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from '../../../components/ui/card.tsx';
+} from '../../../shared/ui/card.tsx';
 import { useCounter } from '../hooks/useCounter.ts';
 
 interface CounterProps {

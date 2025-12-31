@@ -1,5 +1,5 @@
 import { Code2, Github, Moon, Sun } from 'lucide-react';
-import { Button } from '../../../components/ui/button.tsx';
+import { Button } from '../../../shared/ui/button.tsx';
 
 interface HeaderProps {
 	isDark: boolean;

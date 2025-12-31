@@ -1,8 +1,8 @@
-import { Counter } from '../modules/counter';
-import { Header, useTheme } from '../modules/theme';
-import { TodoList } from '../modules/todos';
+import { Counter } from '../features/counter';
+import { Header, useTheme } from '../features/theme';
+import { TodoList } from '../features/todos';
 
-export function App() {
+export function Home() {
 	const { isDark, toggleTheme } = useTheme();
 
 	return (

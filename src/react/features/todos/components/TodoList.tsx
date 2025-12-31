@@ -1,6 +1,6 @@
 import { ListTodo, Plus, Trash2, X } from 'lucide-react';
 import { useState } from 'react';
-import { Button } from '../../../components/ui/button.tsx';
+import { Button } from '../../../shared/ui/button.tsx';
 import {
 	Card,
 	CardContent,
@@ -8,9 +8,9 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from '../../../components/ui/card.tsx';
-import { Checkbox } from '../../../components/ui/checkbox.tsx';
-import { Input } from '../../../components/ui/input.tsx';
+} from '../../../shared/ui/card.tsx';
+import { Checkbox } from '../../../shared/ui/checkbox.tsx';
+import { Input } from '../../../shared/ui/input.tsx';
 import type { Todo } from '../hooks/useTodos.ts';
 import { useTodos } from '../hooks/useTodos.ts';
 

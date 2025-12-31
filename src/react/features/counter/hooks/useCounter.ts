@@ -15,6 +15,12 @@ interface UseCounterReturn {
 	set: (value: number) => void;
 }
 
+/**
+ * 境界値付きカウンター
+ *
+ * @example
+ * const { count, increment, decrement } = useCounter({ min: 0, max: 100 });
+ */
 export function useCounter(options: UseCounterOptions = {}): UseCounterReturn {
 	const {
 		initialValue = 0,
@@ -25,6 +31,7 @@ export function useCounter(options: UseCounterOptions = {}): UseCounterReturn {
 
 	const [count, setCount] = useState(initialValue);
 
+	// Math.min/max で境界を超えないようクランプ
 	const increment = useCallback(() => {
 		setCount((prev) => Math.min(prev + step, max));
 	}, [step, max]);
@@ -39,6 +46,7 @@ export function useCounter(options: UseCounterOptions = {}): UseCounterReturn {
 
 	const set = useCallback(
 		(value: number) => {
+			// 外部から任意の値を設定する場合も境界内に収める
 			setCount(Math.max(min, Math.min(value, max)));
 		},
 		[min, max],
