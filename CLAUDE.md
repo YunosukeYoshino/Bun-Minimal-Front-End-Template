@@ -28,13 +28,25 @@ src/
 └── react/            # React アプリ
     ├── pages/          # 画面
     ├── features/       # 機能モジュール
-    └── shared/         # 共通 (ui/, utils/)
+    │   └── [feature]/
+    │       ├── components/
+    │       ├── hooks/
+    │       ├── types.ts
+    │       ├── constants.ts
+    │       └── index.ts
+    └── shared/         # 共通
+        ├── ui/           # shadcn/ui
+        ├── utils/        # cn(), id生成
+        ├── types/        # 共通型定義 (TodoId等)
+        └── constants/    # 共通定数
 ```
 
 ## Instructions
 
-詳細な開発ガイドラインは以下を参照:
+開発ガイドラインは `.claude/rules/` で自動読み込み:
 
-- @.github/instructions/react.instructions.md - React開発
-- @.github/instructions/build.instructions.md - ビルド・Dev Server
-- @.github/instructions/testing.instructions.md - テスト
+| ルール | 適用対象 |
+|--------|----------|
+| react.md | `src/react/**` |
+| build.md | `build.ts`, `dev.ts`, `bunfig.toml` |
+| testing.md | `**/*.test.ts` |

@@ -1,5 +1,8 @@
 ---
-applyTo: "build.ts,dev.ts,bunfig.toml"
+paths:
+  - "build.ts"
+  - "dev.ts"
+  - "bunfig.toml"
 ---
 
 # Build & Dev Server Instructions

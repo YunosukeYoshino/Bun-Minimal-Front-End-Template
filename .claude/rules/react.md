@@ -1,5 +1,6 @@
 ---
-applyTo: "src/react/**"
+paths:
+  - "src/react/**"
 ---
 
 # React Development Instructions
@@ -14,10 +15,14 @@ src/react/
 │   └── [feature]/
 │       ├── components/
 │       ├── hooks/
+│       ├── types.ts      # Feature-specific types
+│       ├── constants.ts  # Feature-specific constants
 │       └── index.ts
 └── shared/
     ├── ui/           # shadcn/ui primitives
-    └── utils/        # cn() utility
+    ├── utils/        # cn(), id生成
+    ├── types/        # 共通型定義 (TodoId等)
+    └── constants/    # 共通定数
 ```
 
 ## Patterns

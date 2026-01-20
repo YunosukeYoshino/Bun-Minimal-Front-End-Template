@@ -1,37 +1,18 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import { COUNTER_DEFAULTS } from '../constants';
+import type { CounterOptions, UseCounterReturn } from '../types';
 
-interface UseCounterOptions {
-	initialValue?: number;
-	min?: number;
-	max?: number;
-	step?: number;
-}
-
-interface UseCounterReturn {
-	count: number;
-	increment: () => void;
-	decrement: () => void;
-	reset: () => void;
-	set: (value: number) => void;
-}
-
-/**
- * 境界値付きカウンター
- *
- * @example
- * const { count, increment, decrement } = useCounter({ min: 0, max: 100 });
- */
-export function useCounter(options: UseCounterOptions = {}): UseCounterReturn {
+export function useCounter(options: CounterOptions = {}): UseCounterReturn {
 	const {
-		initialValue = 0,
+		initialValue = COUNTER_DEFAULTS.INITIAL_VALUE,
+		// 境界なしの場合は Infinity で表現
 		min = -Infinity,
 		max = Infinity,
-		step = 1,
+		step = COUNTER_DEFAULTS.STEP,
 	} = options;
 
 	const [count, setCount] = useState(initialValue);
 
-	// Math.min/max で境界を超えないようクランプ
 	const increment = useCallback(() => {
 		setCount((prev) => Math.min(prev + step, max));
 	}, [step, max]);
@@ -46,11 +27,19 @@ export function useCounter(options: UseCounterOptions = {}): UseCounterReturn {
 
 	const set = useCallback(
 		(value: number) => {
-			// 外部から任意の値を設定する場合も境界内に収める
 			setCount(Math.max(min, Math.min(value, max)));
 		},
 		[min, max],
 	);
 
-	return { count, increment, decrement, reset, set };
+	// ボタンの disabled 制御に使用
+	const { isAtMin, isAtMax } = useMemo(
+		() => ({
+			isAtMin: count <= min,
+			isAtMax: count >= max,
+		}),
+		[count, min, max],
+	);
+
+	return { count, isAtMin, isAtMax, increment, decrement, reset, set };
 }

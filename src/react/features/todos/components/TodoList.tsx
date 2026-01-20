@@ -1,5 +1,6 @@
 import { ListTodo, Plus, Trash2, X } from 'lucide-react';
 import { useState } from 'react';
+import type { TodoId } from '../../../shared/types';
 import { Button } from '../../../shared/ui/button.tsx';
 import {
 	Card,
@@ -11,14 +12,14 @@ import {
 } from '../../../shared/ui/card.tsx';
 import { Checkbox } from '../../../shared/ui/checkbox.tsx';
 import { Input } from '../../../shared/ui/input.tsx';
-import type { Todo } from '../hooks/useTodos.ts';
 import { useTodos } from '../hooks/useTodos.ts';
+import type { Todo } from '../types.ts';
 
-interface TodoItemProps {
-	todo: Todo;
-	onToggle: (id: string) => void;
-	onDelete: (id: string) => void;
-}
+type TodoItemProps = {
+	readonly todo: Todo;
+	readonly onToggle: (id: TodoId) => void;
+	readonly onDelete: (id: TodoId) => void;
+};
 
 function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
 	return (
@@ -100,7 +101,7 @@ export function TodoList() {
 					<ul className="space-y-2">
 						{todos.map((todo) => (
 							<TodoItem
-								key={todo.id}
+								key={todo.id.value}
 								todo={todo}
 								onToggle={toggleTodo}
 								onDelete={deleteTodo}

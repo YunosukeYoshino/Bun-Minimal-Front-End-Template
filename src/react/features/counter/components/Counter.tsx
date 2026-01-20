@@ -8,30 +8,24 @@ import {
 	CardHeader,
 	CardTitle,
 } from '../../../shared/ui/card.tsx';
+import { COUNTER_DEFAULTS } from '../constants.ts';
 import { useCounter } from '../hooks/useCounter.ts';
+import type { CounterOptions } from '../types.ts';
 
-interface CounterProps {
-	initialValue?: number;
-	min?: number;
-	max?: number;
-	step?: number;
-}
+type CounterProps = CounterOptions;
 
 export function Counter({
-	initialValue = 0,
-	min = -99,
-	max = 99,
-	step = 1,
+	initialValue = COUNTER_DEFAULTS.INITIAL_VALUE,
+	min = COUNTER_DEFAULTS.MIN,
+	max = COUNTER_DEFAULTS.MAX,
+	step = COUNTER_DEFAULTS.STEP,
 }: CounterProps) {
-	const { count, increment, decrement, reset } = useCounter({
+	const { count, isAtMin, isAtMax, increment, decrement, reset } = useCounter({
 		initialValue,
 		min,
 		max,
 		step,
 	});
-
-	const isAtMin = count <= min;
-	const isAtMax = count >= max;
 
 	return (
 		<Card>

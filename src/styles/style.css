@@ -1,27 +1,66 @@
 @import url("tailwindcss");
 
+/* ========================================
+   Base Styles
+   ======================================== */
+html {
+	scroll-behavior: smooth;
+}
+
+/* ========================================
+   Background Image
+   ======================================== */
 @layer utilities {
 	.bg-main-image {
 		background-image: url("../images/sample.jpeg");
 		background-repeat: no-repeat;
 	}
-
-	.animate-gradient {
-		background-size: 200% 200%;
-		animation: gradientAnimation 10s ease infinite;
-	}
 }
 
-@keyframes gradientAnimation {
-	0% {
-		background-position: 0% 50%;
-	}
+/* ========================================
+   Navigation
+   ======================================== */
+#navbar {
+	background-color: rgba(3, 7, 18, 0.8);
+	backdrop-filter: blur(8px);
+}
 
-	50% {
-		background-position: 100% 50%;
-	}
+#navbar.navbar-scrolled {
+	background-color: rgba(3, 7, 18, 0.95);
+}
 
-	100% {
-		background-position: 0% 50%;
+/* ========================================
+   Mobile Menu
+   ======================================== */
+#mobile-menu {
+	display: none;
+}
+
+/* ========================================
+   Form Focus States
+   ======================================== */
+#contact-form input:focus,
+#contact-form textarea:focus {
+	border-color: #6b7280;
+}
+
+#contact-form input.border-red-500,
+#contact-form textarea.border-red-500 {
+	border-color: #ef4444;
+}
+
+/* ========================================
+   Container
+   ======================================== */
+.container {
+	max-width: 1024px;
+}
+
+/* ========================================
+   Reduced Motion Support
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
 	}
 }

@@ -1,64 +1,60 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import type { TodoId } from '../../../shared/types';
+import { createTodoId } from '../../../shared/utils/id';
+import type { Todo } from '../types';
 
-export interface Todo {
-	id: string;
-	text: string;
-	completed: boolean;
-	createdAt: Date;
-}
+type UseTodosReturn = {
+	readonly todos: readonly Todo[];
+	readonly addTodo: (text: string) => void;
+	readonly toggleTodo: (id: TodoId) => void;
+	readonly deleteTodo: (id: TodoId) => void;
+	readonly clearCompleted: () => void;
+	readonly completedCount: number;
+	readonly pendingCount: number;
+};
 
-interface UseTodosReturn {
-	todos: Todo[];
-	addTodo: (text: string) => void;
-	toggleTodo: (id: string) => void;
-	deleteTodo: (id: string) => void;
-	clearCompleted: () => void;
-	completedCount: number;
-	pendingCount: number;
-}
-
-/**
- * Todo リストの CRUD 操作を提供
- *
- * @example
- * const { todos, addTodo, toggleTodo } = useTodos();
- * addTodo('Buy milk');
- */
-export function useTodos(initialTodos: Todo[] = []): UseTodosReturn {
-	const [todos, setTodos] = useState<Todo[]>(initialTodos);
+export function useTodos(initialTodos: readonly Todo[] = []): UseTodosReturn {
+	const [todos, setTodos] = useState<readonly Todo[]>(initialTodos);
 
 	const addTodo = useCallback((text: string) => {
-		if (!text.trim()) return; // 空白のみの入力は無視
+		const trimmedText = text.trim();
+		if (!trimmedText) return;
 
 		const newTodo: Todo = {
-			id: crypto.randomUUID(),
-			text: text.trim(),
+			id: createTodoId(),
+			text: trimmedText,
 			completed: false,
 			createdAt: new Date(),
 		};
-		// 新しいタスクは先頭に追加（最新のタスクが上に表示される）
+		// 先頭追加: 最新タスクをリスト上部に表示するUX
 		setTodos((prev) => [newTodo, ...prev]);
 	}, []);
 
-	const toggleTodo = useCallback((id: string) => {
+	const toggleTodo = useCallback((id: TodoId) => {
 		setTodos((prev) =>
 			prev.map((todo) =>
-				todo.id === id ? { ...todo, completed: !todo.completed } : todo,
+				todo.id.value === id.value
+					? { ...todo, completed: !todo.completed }
+					: todo,
 			),
 		);
 	}, []);
 
-	const deleteTodo = useCallback((id: string) => {
-		setTodos((prev) => prev.filter((todo) => todo.id !== id));
+	const deleteTodo = useCallback((id: TodoId) => {
+		setTodos((prev) => prev.filter((todo) => todo.id.value !== id.value));
 	}, []);
 
 	const clearCompleted = useCallback(() => {
 		setTodos((prev) => prev.filter((todo) => !todo.completed));
 	}, []);
 
-	// 派生状態: レンダリングごとに計算（メモ化不要なほど軽量）
-	const completedCount = todos.filter((todo) => todo.completed).length;
-	const pendingCount = todos.filter((todo) => !todo.completed).length;
+	const { completedCount, pendingCount } = useMemo(() => {
+		const completed = todos.filter((todo) => todo.completed).length;
+		return {
+			completedCount: completed,
+			pendingCount: todos.length - completed,
+		};
+	}, [todos]);
 
 	return {
 		todos,

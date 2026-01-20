@@ -1,46 +1,30 @@
 import { useCallback, useEffect, useState } from 'react';
+import { STORAGE_KEYS } from '../../../shared/constants';
+import type { Theme } from '../../../shared/types';
+import type { UseThemeReturn } from '../types';
 
-type Theme = 'light' | 'dark';
-
-interface UseThemeReturn {
-	theme: Theme;
-	toggleTheme: () => void;
-	setTheme: (theme: Theme) => void;
-	isDark: boolean;
-}
-
-/**
- * ダークモード切り替え（localStorage に永続化）
- *
- * 初期値の優先順位:
- * 1. localStorage に保存された値
- * 2. OS のカラースキーム設定
- * 3. フォールバック: light
- */
 export function useTheme(): UseThemeReturn {
+	// 初期値優先順位: localStorage > OS設定 > light
 	const [theme, setThemeState] = useState<Theme>(() => {
-		// SSR 環境では window が存在しないためガード
-		if (typeof window !== 'undefined') {
-			const stored = localStorage.getItem('theme') as Theme | null;
-			if (stored) return stored;
+		if (typeof window === 'undefined') return 'light';
 
-			// OS のカラースキーム設定を尊重
-			return window.matchMedia('(prefers-color-scheme: dark)').matches
-				? 'dark'
-				: 'light';
-		}
-		return 'light';
+		const stored = localStorage.getItem(STORAGE_KEYS.THEME);
+		if (stored === 'light' || stored === 'dark') return stored;
+
+		return window.matchMedia('(prefers-color-scheme: dark)').matches
+			? 'dark'
+			: 'light';
 	});
 
 	useEffect(() => {
-		// Tailwind CSS は html 要素の .dark クラスでダークモードを判定
+		// Tailwind v4 は html.dark でダークモード判定
 		const root = document.documentElement;
 		if (theme === 'dark') {
 			root.classList.add('dark');
 		} else {
 			root.classList.remove('dark');
 		}
-		localStorage.setItem('theme', theme);
+		localStorage.setItem(STORAGE_KEYS.THEME, theme);
 	}, [theme]);
 
 	const toggleTheme = useCallback(() => {

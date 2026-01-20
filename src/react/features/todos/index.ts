@@ -1,3 +1,8 @@
+// Components
 export { TodoList } from './components/TodoList.tsx';
-export type { Todo } from './hooks/useTodos.ts';
+
+// Hooks
 export { useTodos } from './hooks/useTodos.ts';
+
+// Types
+export type { Todo, TodoInput } from './types';
