@@ -28,4 +28,4 @@ export default {
 		'selector-class-pattern': null,
 		'no-duplicate-selectors': null,
 	},
-};
+}

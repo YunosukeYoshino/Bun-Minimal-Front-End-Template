@@ -1,5 +1,5 @@
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { type ClassValue, clsx } from 'clsx'
+import { twMerge } from 'tailwind-merge'
 
 /**
  * クラス名を結合するユーティリティ
@@ -12,5 +12,5 @@ import { twMerge } from 'tailwind-merge';
  * cn('p-2', 'p-4') // => 'p-4' (後者が優先)
  */
 export function cn(...inputs: ClassValue[]) {
-	return twMerge(clsx(inputs));
+	return twMerge(clsx(inputs))
 }

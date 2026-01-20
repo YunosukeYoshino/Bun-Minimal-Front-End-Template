@@ -1,8 +1,8 @@
 ---
 paths:
-  - "build.ts"
-  - "dev.ts"
-  - "bunfig.toml"
+  - 'build.ts'
+  - 'dev.ts'
+  - 'bunfig.toml'
 ---
 
 # Build & Dev Server Instructions
@@ -18,16 +18,16 @@ bun run dev:react     # React only
 ### Dev Server Config (`dev.ts`)
 
 ```typescript
-import { serve } from 'bun';
+import { serve } from 'bun'
 
 serve({
-  port: 3000,
-  development: { hmr: true, console: true },
-  routes: {
-    '/': homepage,
-    '/react': reactPage,
-  },
-});
+	port: 3000,
+	development: { hmr: true, console: true },
+	routes: {
+		'/': homepage,
+		'/react': reactPage,
+	},
+})
 ```
 
 ## Production Build

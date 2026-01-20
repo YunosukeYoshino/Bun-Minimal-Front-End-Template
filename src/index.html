@@ -9,39 +9,88 @@
 	<body class="antialiased bg-gray-950 text-white">
 		<!-- Navigation -->
 		<nav id="navbar" class="fixed top-0 left-0 right-0 z-50">
-			<div class="container mx-auto px-4 py-4 flex items-center justify-between">
+			<div
+				class="container mx-auto px-4 py-4 flex items-center justify-between"
+			>
 				<a href="#hero" class="text-xl font-semibold">NextGen</a>
-				<button id="mobile-menu-btn" class="md:hidden p-2" aria-label="メニューを開く">
-					<svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+				<button
+					id="mobile-menu-btn"
+					class="md:hidden p-2"
+					aria-label="メニューを開く"
+				>
+					<svg
+						class="size-6"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="1.5"
+							d="M4 6h16M4 12h16M4 18h16"
+						/>
 					</svg>
 				</button>
 				<ul id="nav-links" class="hidden md:flex gap-8 text-sm text-gray-400">
 					<li><a href="#hero" class="nav-link hover:text-white">Home</a></li>
-					<li><a href="#features" class="nav-link hover:text-white">Features</a></li>
+					<li>
+						<a href="#features" class="nav-link hover:text-white">Features</a>
+					</li>
 					<li><a href="#about" class="nav-link hover:text-white">About</a></li>
-					<li><a href="#contact" class="nav-link hover:text-white">Contact</a></li>
+					<li>
+						<a href="#contact" class="nav-link hover:text-white">Contact</a>
+					</li>
 				</ul>
 			</div>
-			<ul id="mobile-menu" class="hidden md:hidden bg-gray-900 px-4 pb-4 text-sm text-gray-400">
-				<li><a href="#hero" class="nav-link block py-2 hover:text-white">Home</a></li>
-				<li><a href="#features" class="nav-link block py-2 hover:text-white">Features</a></li>
-				<li><a href="#about" class="nav-link block py-2 hover:text-white">About</a></li>
-				<li><a href="#contact" class="nav-link block py-2 hover:text-white">Contact</a></li>
+			<ul
+				id="mobile-menu"
+				class="hidden md:hidden bg-gray-900 px-4 pb-4 text-sm text-gray-400"
+			>
+				<li>
+					<a href="#hero" class="nav-link block py-2 hover:text-white">Home</a>
+				</li>
+				<li>
+					<a href="#features" class="nav-link block py-2 hover:text-white"
+						>Features</a
+					>
+				</li>
+				<li>
+					<a href="#about" class="nav-link block py-2 hover:text-white"
+						>About</a
+					>
+				</li>
+				<li>
+					<a href="#contact" class="nav-link block py-2 hover:text-white"
+						>Contact</a
+					>
+				</li>
 			</ul>
 		</nav>
 
 		<!-- Hero Section -->
-		<section id="hero" class="relative h-dvh w-full bg-cover bg-center bg-main-image">
+		<section
+			id="hero"
+			class="relative h-dvh w-full bg-cover bg-center bg-main-image"
+		>
 			<div class="absolute inset-0 bg-gray-950/60"></div>
-			<div class="relative z-10 flex flex-col items-center justify-center h-full px-4">
-				<h1 class="text-4xl md:text-6xl font-semibold text-center text-balance mb-4">
+			<div
+				class="relative z-10 flex flex-col items-center justify-center h-full px-4"
+			>
+				<h1
+					class="text-4xl md:text-6xl font-semibold text-center text-balance mb-4"
+				>
 					Next-Gen Innovation
 				</h1>
-				<p class="text-lg md:text-xl text-center text-pretty mb-8 text-gray-300 max-w-xl">
+				<p
+					class="text-lg md:text-xl text-center text-pretty mb-8 text-gray-300 max-w-xl"
+				>
 					Transforming your vision into reality.
 				</p>
-				<button id="cta-button" class="bg-white text-gray-950 font-medium py-3 px-6 rounded hover:bg-gray-100">
+				<button
+					id="cta-button"
+					class="bg-white text-gray-950 font-medium py-3 px-6 rounded hover:bg-gray-100"
+				>
 					Get Started
 				</button>
 			</div>
@@ -50,14 +99,21 @@
 		<!-- Features Section -->
 		<section id="features" class="py-20 bg-gray-900">
 			<div class="container mx-auto px-4">
-				<h2 class="text-2xl md:text-3xl font-semibold text-center text-balance mb-12">
+				<h2
+					class="text-2xl md:text-3xl font-semibold text-center text-balance mb-12"
+				>
 					Features
 				</h2>
 				<div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
 					<div class="text-center">
 						<div class="size-12 mx-auto mb-4 text-gray-400">
 							<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="1.5"
+									d="M13 10V3L4 14h7v7l9-11h-7z"
+								/>
 							</svg>
 						</div>
 						<h3 class="font-medium mb-2">Lightning Fast</h3>
@@ -68,7 +124,12 @@
 					<div class="text-center">
 						<div class="size-12 mx-auto mb-4 text-gray-400">
 							<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="1.5"
+									d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+								/>
 							</svg>
 						</div>
 						<h3 class="font-medium mb-2">Secure</h3>
@@ -79,7 +140,12 @@
 					<div class="text-center">
 						<div class="size-12 mx-auto mb-4 text-gray-400">
 							<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="1.5"
+									d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
+								/>
 							</svg>
 						</div>
 						<h3 class="font-medium mb-2">User Friendly</h3>
@@ -94,7 +160,9 @@
 		<!-- About Section -->
 		<section id="about" class="py-20 bg-gray-950">
 			<div class="container mx-auto px-4 max-w-3xl">
-				<h2 class="text-2xl md:text-3xl font-semibold text-center text-balance mb-8">
+				<h2
+					class="text-2xl md:text-3xl font-semibold text-center text-balance mb-8"
+				>
 					About Us
 				</h2>
 				<p class="text-gray-300 text-center text-pretty mb-12">
@@ -125,12 +193,16 @@
 		<!-- Contact Section -->
 		<section id="contact" class="py-20 bg-gray-900">
 			<div class="container mx-auto px-4 max-w-md">
-				<h2 class="text-2xl md:text-3xl font-semibold text-center text-balance mb-8">
+				<h2
+					class="text-2xl md:text-3xl font-semibold text-center text-balance mb-8"
+				>
 					Contact
 				</h2>
 				<form id="contact-form" class="space-y-4">
 					<div>
-						<label for="name" class="block text-sm text-gray-400 mb-1">お名前</label>
+						<label for="name" class="block text-sm text-gray-400 mb-1"
+							>お名前</label
+						>
 						<input
 							type="text"
 							id="name"
@@ -141,7 +213,9 @@
 						<span class="error-message text-red-500 text-xs mt-1 hidden"></span>
 					</div>
 					<div>
-						<label for="email" class="block text-sm text-gray-400 mb-1">メールアドレス</label>
+						<label for="email" class="block text-sm text-gray-400 mb-1"
+							>メールアドレス</label
+						>
 						<input
 							type="email"
 							id="email"
@@ -152,7 +226,9 @@
 						<span class="error-message text-red-500 text-xs mt-1 hidden"></span>
 					</div>
 					<div>
-						<label for="message" class="block text-sm text-gray-400 mb-1">メッセージ</label>
+						<label for="message" class="block text-sm text-gray-400 mb-1"
+							>メッセージ</label
+						>
 						<textarea
 							id="message"
 							name="message"
@@ -162,7 +238,10 @@
 						></textarea>
 						<span class="error-message text-red-500 text-xs mt-1 hidden"></span>
 					</div>
-					<button type="submit" class="w-full bg-white text-gray-950 font-medium py-2 rounded hover:bg-gray-100">
+					<button
+						type="submit"
+						class="w-full bg-white text-gray-950 font-medium py-2 rounded hover:bg-gray-100"
+					>
 						送信
 					</button>
 				</form>

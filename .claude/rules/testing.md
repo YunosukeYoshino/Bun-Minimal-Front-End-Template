@@ -1,6 +1,6 @@
 ---
 paths:
-  - "**/*.test.ts"
+  - '**/*.test.ts'
 ---
 
 # Testing Instructions
@@ -20,28 +20,28 @@ bun test --coverage   # Coverage report
 ## Test Structure
 
 ```typescript
-import { describe, expect, test, beforeEach, afterEach } from 'bun:test';
-import { Window } from 'happy-dom';
+import { describe, expect, test, beforeEach, afterEach } from 'bun:test'
+import { Window } from 'happy-dom'
 
-const window = new Window();
-const document = window.document;
+const window = new Window()
+const document = window.document
 
 describe('Feature', () => {
-  let element: HTMLElement;
+	let element: HTMLElement
 
-  beforeEach(() => {
-    element = document.createElement('div');
-    document.body.appendChild(element);
-  });
+	beforeEach(() => {
+		element = document.createElement('div')
+		document.body.appendChild(element)
+	})
 
-  afterEach(() => {
-    document.body.removeChild(element);
-  });
+	afterEach(() => {
+		document.body.removeChild(element)
+	})
 
-  test('does something', () => {
-    expect(element).toBeDefined();
-  });
-});
+	test('does something', () => {
+		expect(element).toBeDefined()
+	})
+})
 ```
 
 ## Location

@@ -19,18 +19,18 @@ This skill provides guidance for writing modern jQuery code compatible with jQue
 
 The following APIs were removed in jQuery 4.0 and must never be used. Replace with native JavaScript equivalents:
 
-| Banned API | Replacement |
-|------------|-------------|
-| `$.isArray()` | `Array.isArray()` |
-| `$.parseJSON()` | `JSON.parse()` |
-| `$.trim()` | `str.trim()` |
-| `$.type()` | `typeof` / `instanceof` |
-| `$.now()` | `Date.now()` |
-| `$.isNumeric()` | `Number.isFinite()` |
+| Banned API       | Replacement                |
+| ---------------- | -------------------------- |
+| `$.isArray()`    | `Array.isArray()`          |
+| `$.parseJSON()`  | `JSON.parse()`             |
+| `$.trim()`       | `str.trim()`               |
+| `$.type()`       | `typeof` / `instanceof`    |
+| `$.now()`        | `Date.now()`               |
+| `$.isNumeric()`  | `Number.isFinite()`        |
 | `$.isFunction()` | `typeof fn === 'function'` |
-| `$.isWindow()` | `obj === window` |
-| `$.camelCase()` | Custom function or lodash |
-| `$.nodeName()` | `element.nodeName` |
+| `$.isWindow()`   | `obj === window`           |
+| `$.camelCase()`  | Custom function or lodash  |
+| `$.nodeName()`   | `element.nodeName`         |
 
 Also removed from prototype: `$elems.push()`, `$elems.sort()`, `$elems.splice()` — use `[].method.call($elems, ...)` instead.
 
@@ -40,32 +40,32 @@ Also removed from prototype: `$elems.push()`, `$elems.sort()`, `$elems.splice()`
 
 ```javascript
 // ✅ Correct: Cache selectors, use $ prefix for jQuery objects
-const $container = $("#container");
-const $items = $container.find(".item");
+const $container = $('#container')
+const $items = $container.find('.item')
 
 // ❌ Wrong: Repeated selector calls, element type in class selector
-$("div.container").addClass("active");
-$("div.container").find(".item"); // Re-queries DOM
+$('div.container').addClass('active')
+$('div.container').find('.item') // Re-queries DOM
 ```
 
 ### Event Handling
 
 ```javascript
 // ✅ Correct: Use .on() with event delegation
-$container.on("click", ".item", (e) => {
-  e.preventDefault();
-  console.log($(e.currentTarget).data("id"));
-});
+$container.on('click', '.item', (e) => {
+	e.preventDefault()
+	console.log($(e.currentTarget).data('id'))
+})
 
 // ✅ Correct: DOMReady shorthand with arrow function
 $(() => {
-  initApp();
-});
+	initApp()
+})
 
 // ❌ Wrong: Deprecated event methods
-$element.click(handler);      // Use .on("click", handler)
-$element.bind("click", handler); // Use .on()
-$(document).ready(function(){}); // Use $(() => {})
+$element.click(handler) // Use .on("click", handler)
+$element.bind('click', handler) // Use .on()
+$(document).ready(function () {}) // Use $(() => {})
 ```
 
 ### AJAX with async/await
@@ -73,36 +73,36 @@ $(document).ready(function(){}); // Use $(() => {})
 ```javascript
 // ✅ Correct: async/await pattern
 async function fetchData(endpoint) {
-  try {
-    const data = await $.ajax({
-      url: endpoint,
-      method: "GET",
-      dataType: "json"
-    });
-    return data;
-  } catch (error) {
-    console.error("API Error:", error);
-    throw error;
-  }
+	try {
+		const data = await $.ajax({
+			url: endpoint,
+			method: 'GET',
+			dataType: 'json',
+		})
+		return data
+	} catch (error) {
+		console.error('API Error:', error)
+		throw error
+	}
 }
 
 // ❌ Wrong: JSONP (security risk, auto-promotion removed in 4.0)
-$.ajax({ url: "/api", dataType: "jsonp" }); // Use CORS instead
+$.ajax({ url: '/api', dataType: 'jsonp' }) // Use CORS instead
 ```
 
 ### DOM Manipulation
 
 ```javascript
 // ✅ Correct: Batch operations
-const html = items.map(item => `<li>${item.name}</li>`).join("");
-$list.append(html);
+const html = items.map((item) => `<li>${item.name}</li>`).join('')
+$list.append(html)
 
 // ✅ Correct: Use prop() for boolean attributes
-$checkbox.prop("checked", true);
-$input.prop("disabled", false);
+$checkbox.prop('checked', true)
+$input.prop('disabled', false)
 
 // ❌ Wrong: Loop-based append (causes reflow per iteration)
-items.forEach(item => $list.append(`<li>${item.name}</li>`));
+items.forEach((item) => $list.append(`<li>${item.name}</li>`))
 ```
 
 ### Animation
@@ -111,11 +111,11 @@ Prefer CSS transitions with class manipulation over jQuery animations:
 
 ```javascript
 // ✅ Correct: CSS class-based animation
-$element.addClass("fade-in");
+$element.addClass('fade-in')
 // CSS: .fade-in { transition: opacity 0.3s; opacity: 1; }
 
 // ⚠️ Use jQuery animation only for dynamic values
-$element.animate({ scrollTop: position }, 300);
+$element.animate({ scrollTop: position }, 300)
 ```
 
 ## ES Modules Import
@@ -123,7 +123,7 @@ $element.animate({ scrollTop: position }, 300);
 jQuery 4.0 supports ES modules natively:
 
 ```javascript
-import $ from "jquery";
+import $ from 'jquery'
 ```
 
 ## Detailed References

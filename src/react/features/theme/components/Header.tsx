@@ -1,9 +1,9 @@
-import { Code2, Github, Moon, Sun } from 'lucide-react';
-import { Button } from '../../../shared/ui/button.tsx';
+import { Code2, Github, Moon, Sun } from 'lucide-react'
+import { Button } from '../../../shared/ui/button.tsx'
 
 interface HeaderProps {
-	isDark: boolean;
-	onThemeToggle: () => void;
+	isDark: boolean
+	onThemeToggle: () => void
 }
 
 export function Header({ isDark, onThemeToggle }: HeaderProps) {
@@ -41,5 +41,5 @@ export function Header({ isDark, onThemeToggle }: HeaderProps) {
 				</div>
 			</div>
 		</header>
-	);
+	)
 }

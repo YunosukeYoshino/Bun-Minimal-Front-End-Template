@@ -7,4 +7,4 @@ export const COUNTER_DEFAULTS = {
 	MIN: -99,
 	MAX: 99,
 	STEP: 1,
-} as const;
+} as const

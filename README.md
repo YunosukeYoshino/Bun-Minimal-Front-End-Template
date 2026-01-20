@@ -47,6 +47,7 @@ bun run dev:react     # React at http://localhost:3000
 
 > [!TIP]
 > The `dev` command starts a unified server with routing:
+>
 > - `/` → Vanilla JS app
 > - `/react` → React app
 
@@ -54,16 +55,16 @@ bun run dev:react     # React at http://localhost:3000
 
 ### Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `bun run dev` | Start Fullstack Dev Server with HMR |
-| `bun run dev:vanilla` | Start Vanilla JS dev server |
-| `bun run dev:react` | Start React dev server |
-| `bun run build` | Production build (minified) |
-| `bun run build:dev` | Development build (with sourcemaps) |
-| `bun run test` | Run tests |
-| `bun run check` | Run Biome linter |
-| `bun run format` | Format code with Prettier |
+| Command               | Description                         |
+| --------------------- | ----------------------------------- |
+| `bun run dev`         | Start Fullstack Dev Server with HMR |
+| `bun run dev:vanilla` | Start Vanilla JS dev server         |
+| `bun run dev:react`   | Start React dev server              |
+| `bun run build`       | Production build (minified)         |
+| `bun run build:dev`   | Development build (with sourcemaps) |
+| `bun run test`        | Run tests                           |
+| `bun run check`       | Run Biome linter                    |
+| `bun run format`      | Format code with Prettier           |
 
 ### Project Structure
 
@@ -117,11 +118,11 @@ Edit `build.ts` to customize:
 
 ```typescript
 const commonOptions = {
-  minify: !isDev,
-  sourcemap: isDev ? 'linked' : 'none',
-  splitting: true,
-  env: 'PUBLIC_*',
-};
+	minify: !isDev,
+	sourcemap: isDev ? 'linked' : 'none',
+	splitting: true,
+	env: 'PUBLIC_*',
+}
 ```
 
 ## Testing

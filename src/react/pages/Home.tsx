@@ -1,9 +1,9 @@
-import { Counter } from '../features/counter';
-import { Header, useTheme } from '../features/theme';
-import { TodoList } from '../features/todos';
+import { Counter } from '../features/counter'
+import { Header, useTheme } from '../features/theme'
+import { TodoList } from '../features/todos'
 
 export function Home() {
-	const { isDark, toggleTheme } = useTheme();
+	const { isDark, toggleTheme } = useTheme()
 
 	return (
 		<div className="min-h-screen bg-background transition-colors duration-200">
@@ -26,5 +26,5 @@ export function Home() {
 				</footer>
 			</main>
 		</div>
-	);
+	)
 }

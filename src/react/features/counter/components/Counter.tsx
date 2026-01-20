@@ -1,5 +1,5 @@
-import { Minus, Plus, RotateCcw } from 'lucide-react';
-import { Button } from '../../../shared/ui/button.tsx';
+import { Minus, Plus, RotateCcw } from 'lucide-react'
+import { Button } from '../../../shared/ui/button.tsx'
 import {
 	Card,
 	CardContent,
@@ -7,12 +7,12 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from '../../../shared/ui/card.tsx';
-import { COUNTER_DEFAULTS } from '../constants.ts';
-import { useCounter } from '../hooks/useCounter.ts';
-import type { CounterOptions } from '../types.ts';
+} from '../../../shared/ui/card.tsx'
+import { COUNTER_DEFAULTS } from '../constants.ts'
+import { useCounter } from '../hooks/useCounter.ts'
+import type { CounterOptions } from '../types.ts'
 
-type CounterProps = CounterOptions;
+type CounterProps = CounterOptions
 
 export function Counter({
 	initialValue = COUNTER_DEFAULTS.INITIAL_VALUE,
@@ -25,7 +25,7 @@ export function Counter({
 		min,
 		max,
 		step,
-	});
+	})
 
 	return (
 		<Card>
@@ -77,5 +77,5 @@ export function Counter({
 				Click buttons to change the counter value
 			</CardFooter>
 		</Card>
-	);
+	)
 }

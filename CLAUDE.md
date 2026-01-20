@@ -45,8 +45,8 @@ src/
 
 開発ガイドラインは `.claude/rules/` で自動読み込み:
 
-| ルール | 適用対象 |
-|--------|----------|
-| react.md | `src/react/**` |
-| build.md | `build.ts`, `dev.ts`, `bunfig.toml` |
-| testing.md | `**/*.test.ts` |
+| ルール     | 適用対象                            |
+| ---------- | ----------------------------------- |
+| react.md   | `src/react/**`                      |
+| build.md   | `build.ts`, `dev.ts`, `bunfig.toml` |
+| testing.md | `**/*.test.ts`                      |

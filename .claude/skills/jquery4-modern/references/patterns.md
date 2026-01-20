@@ -9,25 +9,25 @@ Comprehensive coding patterns for modern jQuery development.
 ```javascript
 // ✅ Module-level caching for frequently accessed elements
 const UI = {
-  $container: null,
-  $items: null,
-  $form: null,
-  
-  init() {
-    this.$container = $("#main-container");
-    this.$items = this.$container.find(".item");
-    this.$form = $("#search-form");
-  }
-};
+	$container: null,
+	$items: null,
+	$form: null,
+
+	init() {
+		this.$container = $('#main-container')
+		this.$items = this.$container.find('.item')
+		this.$form = $('#search-form')
+	},
+}
 
 // ✅ Function-scoped caching
 function processItems() {
-  const $items = $(".item"); // Cache once
-  $items.addClass("processing");
-  $items.each(function() {
-    // Process each item
-  });
-  $items.removeClass("processing");
+	const $items = $('.item') // Cache once
+	$items.addClass('processing')
+	$items.each(function () {
+		// Process each item
+	})
+	$items.removeClass('processing')
 }
 ```
 
@@ -35,19 +35,19 @@ function processItems() {
 
 ```javascript
 // ✅ ID first, then find
-const $links = $("#nav").find("a");
+const $links = $('#nav').find('a')
 
 // ✅ Class selector without element type
-const $buttons = $(".btn-primary");
+const $buttons = $('.btn-primary')
 
 // ✅ Context parameter
-const $inputs = $("input", "#form-container");
+const $inputs = $('input', '#form-container')
 
 // ❌ Avoid complex CSS3 selectors
-$("div:not(.active):has(.child)"); // Slow
+$('div:not(.active):has(.child)') // Slow
 
 // ✅ Better: break into steps
-const $divs = $("div").not(".active").has(".child");
+const $divs = $('div').not('.active').has('.child')
 ```
 
 ## Event Patterns
@@ -56,17 +56,17 @@ const $divs = $("div").not(".active").has(".child");
 
 ```javascript
 // ✅ Namespace for easy cleanup
-const NAMESPACE = "myPlugin";
+const NAMESPACE = 'myPlugin'
 
 function initPlugin($container) {
-  $container.on(`click.${NAMESPACE}`, ".item", handleClick);
-  $container.on(`mouseenter.${NAMESPACE}`, ".item", handleHover);
-  $(window).on(`resize.${NAMESPACE}`, handleResize);
+	$container.on(`click.${NAMESPACE}`, '.item', handleClick)
+	$container.on(`mouseenter.${NAMESPACE}`, '.item', handleHover)
+	$(window).on(`resize.${NAMESPACE}`, handleResize)
 }
 
 function destroyPlugin($container) {
-  $container.off(`.${NAMESPACE}`);
-  $(window).off(`.${NAMESPACE}`);
+	$container.off(`.${NAMESPACE}`)
+	$(window).off(`.${NAMESPACE}`)
 }
 ```
 
@@ -74,19 +74,19 @@ function destroyPlugin($container) {
 
 ```javascript
 // ✅ Single delegated handler for dynamic content
-$container.on("click", "[data-action]", function(e) {
-  e.preventDefault();
-  const $target = $(this);
-  const action = $target.data("action");
-  
-  const actions = {
-    delete: () => deleteItem($target),
-    edit: () => editItem($target),
-    toggle: () => toggleItem($target)
-  };
-  
-  actions[action]?.();
-});
+$container.on('click', '[data-action]', function (e) {
+	e.preventDefault()
+	const $target = $(this)
+	const action = $target.data('action')
+
+	const actions = {
+		delete: () => deleteItem($target),
+		edit: () => editItem($target),
+		toggle: () => toggleItem($target),
+	}
+
+	actions[action]?.()
+})
 ```
 
 ### Custom Events
@@ -94,18 +94,18 @@ $container.on("click", "[data-action]", function(e) {
 ```javascript
 // ✅ Custom events for component communication
 const Events = {
-  ITEM_ADDED: "app:item:added",
-  ITEM_REMOVED: "app:item:removed",
-  FILTER_CHANGED: "app:filter:changed"
-};
+	ITEM_ADDED: 'app:item:added',
+	ITEM_REMOVED: 'app:item:removed',
+	FILTER_CHANGED: 'app:filter:changed',
+}
 
 // Trigger
-$container.trigger(Events.ITEM_ADDED, [{ id: 123, name: "New Item" }]);
+$container.trigger(Events.ITEM_ADDED, [{ id: 123, name: 'New Item' }])
 
 // Listen
 $container.on(Events.ITEM_ADDED, (e, item) => {
-  console.log("Item added:", item);
-});
+	console.log('Item added:', item)
+})
 ```
 
 ## AJAX Patterns
@@ -115,43 +115,43 @@ $container.on(Events.ITEM_ADDED, (e, item) => {
 ```javascript
 // ✅ Reusable API client
 const API = {
-  baseUrl: "/api/v1",
-  
-  async get(endpoint, params = {}) {
-    return $.ajax({
-      url: `${this.baseUrl}${endpoint}`,
-      method: "GET",
-      data: params,
-      dataType: "json"
-    });
-  },
-  
-  async post(endpoint, data) {
-    return $.ajax({
-      url: `${this.baseUrl}${endpoint}`,
-      method: "POST",
-      data: JSON.stringify(data),
-      contentType: "application/json",
-      dataType: "json"
-    });
-  },
-  
-  async delete(endpoint) {
-    return $.ajax({
-      url: `${this.baseUrl}${endpoint}`,
-      method: "DELETE"
-    });
-  }
-};
+	baseUrl: '/api/v1',
+
+	async get(endpoint, params = {}) {
+		return $.ajax({
+			url: `${this.baseUrl}${endpoint}`,
+			method: 'GET',
+			data: params,
+			dataType: 'json',
+		})
+	},
+
+	async post(endpoint, data) {
+		return $.ajax({
+			url: `${this.baseUrl}${endpoint}`,
+			method: 'POST',
+			data: JSON.stringify(data),
+			contentType: 'application/json',
+			dataType: 'json',
+		})
+	},
+
+	async delete(endpoint) {
+		return $.ajax({
+			url: `${this.baseUrl}${endpoint}`,
+			method: 'DELETE',
+		})
+	},
+}
 
 // Usage
 async function loadUsers() {
-  try {
-    const users = await API.get("/users", { limit: 10 });
-    renderUsers(users);
-  } catch (error) {
-    showError("Failed to load users");
-  }
+	try {
+		const users = await API.get('/users', { limit: 10 })
+		renderUsers(users)
+	} catch (error) {
+		showError('Failed to load users')
+	}
 }
 ```
 
@@ -160,29 +160,29 @@ async function loadUsers() {
 ```javascript
 // ✅ Prevent duplicate requests
 const RequestQueue = {
-  pending: new Map(),
-  
-  async fetch(key, requestFn) {
-    if (this.pending.has(key)) {
-      return this.pending.get(key);
-    }
-    
-    const promise = requestFn();
-    this.pending.set(key, promise);
-    
-    try {
-      return await promise;
-    } finally {
-      this.pending.delete(key);
-    }
-  }
-};
+	pending: new Map(),
+
+	async fetch(key, requestFn) {
+		if (this.pending.has(key)) {
+			return this.pending.get(key)
+		}
+
+		const promise = requestFn()
+		this.pending.set(key, promise)
+
+		try {
+			return await promise
+		} finally {
+			this.pending.delete(key)
+		}
+	},
+}
 
 // Usage
 async function getUser(id) {
-  return RequestQueue.fetch(`user-${id}`, () => 
-    $.ajax({ url: `/api/users/${id}` })
-  );
+	return RequestQueue.fetch(`user-${id}`, () =>
+		$.ajax({ url: `/api/users/${id}` }),
+	)
 }
 ```
 
@@ -193,25 +193,27 @@ async function getUser(id) {
 ```javascript
 // ✅ Build HTML efficiently
 function buildItemList(items) {
-  return items
-    .map(item => `
+	return items
+		.map(
+			(item) => `
       <li class="item" data-id="${item.id}">
         <span class="item-name">${escapeHtml(item.name)}</span>
         <button class="btn-delete" data-action="delete">Delete</button>
       </li>
-    `)
-    .join("");
+    `,
+		)
+		.join('')
 }
 
 // ✅ HTML escaping utility
 function escapeHtml(text) {
-  const div = document.createElement("div");
-  div.textContent = text;
-  return div.innerHTML;
+	const div = document.createElement('div')
+	div.textContent = text
+	return div.innerHTML
 }
 
 // Usage
-$list.html(buildItemList(items));
+$list.html(buildItemList(items))
 ```
 
 ### Detach for Heavy Operations
@@ -219,13 +221,13 @@ $list.html(buildItemList(items));
 ```javascript
 // ✅ Detach, modify, reattach
 function sortItems($container) {
-  const $items = $container.children().detach();
-  
-  const sorted = $items.sort((a, b) => {
-    return $(a).data("order") - $(b).data("order");
-  });
-  
-  $container.append(sorted);
+	const $items = $container.children().detach()
+
+	const sorted = $items.sort((a, b) => {
+		return $(a).data('order') - $(b).data('order')
+	})
+
+	$container.append(sorted)
 }
 ```
 
@@ -234,7 +236,7 @@ function sortItems($container) {
 ```javascript
 // ✅ Reusable template function
 const Templates = {
-  card: (data) => `
+	card: (data) => `
     <div class="card" data-id="${data.id}">
       <h3 class="card-title">${escapeHtml(data.title)}</h3>
       <p class="card-body">${escapeHtml(data.body)}</p>
@@ -243,13 +245,13 @@ const Templates = {
       </footer>
     </div>
   `,
-  
-  list: (items, itemTemplate) => `
+
+	list: (items, itemTemplate) => `
     <ul class="list">
-      ${items.map(item => `<li>${itemTemplate(item)}</li>`).join("")}
+      ${items.map((item) => `<li>${itemTemplate(item)}</li>`).join('')}
     </ul>
-  `
-};
+  `,
+}
 ```
 
 ## Animation Patterns
@@ -259,13 +261,13 @@ const Templates = {
 ```javascript
 // ✅ CSS transition with completion callback
 function fadeOut($element) {
-  return new Promise(resolve => {
-    $element.addClass("fading-out");
-    $element.one("transitionend", () => {
-      $element.removeClass("fading-out").addClass("hidden");
-      resolve();
-    });
-  });
+	return new Promise((resolve) => {
+		$element.addClass('fading-out')
+		$element.one('transitionend', () => {
+			$element.removeClass('fading-out').addClass('hidden')
+			resolve()
+		})
+	})
 }
 
 // CSS
@@ -278,11 +280,11 @@ function fadeOut($element) {
 ```javascript
 // ✅ Sequential animations
 async function animateSequence($elements) {
-  for (const el of $elements) {
-    await new Promise(resolve => {
-      $(el).fadeIn(300, resolve);
-    });
-  }
+	for (const el of $elements) {
+		await new Promise((resolve) => {
+			$(el).fadeIn(300, resolve)
+		})
+	}
 }
 ```
 
@@ -292,33 +294,33 @@ async function animateSequence($elements) {
 
 ```javascript
 // my-plugin.js
-import $ from "jquery";
+import $ from 'jquery'
 
 const DEFAULTS = {
-  speed: 300,
-  easing: "swing",
-  onComplete: null
-};
+	speed: 300,
+	easing: 'swing',
+	onComplete: null,
+}
 
 export function initMyPlugin($container, options = {}) {
-  const settings = { ...DEFAULTS, ...options };
-  const $items = $container.find(".item");
-  
-  function handleClick(e) {
-    e.preventDefault();
-    const $item = $(e.currentTarget);
-    $item.slideToggle(settings.speed, settings.easing, () => {
-      settings.onComplete?.($item);
-    });
-  }
-  
-  $container.on("click", ".item", handleClick);
-  
-  return {
-    destroy() {
-      $container.off("click", ".item", handleClick);
-    }
-  };
+	const settings = { ...DEFAULTS, ...options }
+	const $items = $container.find('.item')
+
+	function handleClick(e) {
+		e.preventDefault()
+		const $item = $(e.currentTarget)
+		$item.slideToggle(settings.speed, settings.easing, () => {
+			settings.onComplete?.($item)
+		})
+	}
+
+	$container.on('click', '.item', handleClick)
+
+	return {
+		destroy() {
+			$container.off('click', '.item', handleClick)
+		},
+	}
 }
 ```
 
@@ -327,35 +329,35 @@ export function initMyPlugin($container, options = {}) {
 ```javascript
 // ✅ Simple state management
 const Store = {
-  state: {
-    items: [],
-    filter: "all",
-    loading: false
-  },
-  
-  listeners: new Set(),
-  
-  setState(updates) {
-    this.state = { ...this.state, ...updates };
-    this.notify();
-  },
-  
-  subscribe(listener) {
-    this.listeners.add(listener);
-    return () => this.listeners.delete(listener);
-  },
-  
-  notify() {
-    this.listeners.forEach(listener => listener(this.state));
-  }
-};
+	state: {
+		items: [],
+		filter: 'all',
+		loading: false,
+	},
+
+	listeners: new Set(),
+
+	setState(updates) {
+		this.state = { ...this.state, ...updates }
+		this.notify()
+	},
+
+	subscribe(listener) {
+		this.listeners.add(listener)
+		return () => this.listeners.delete(listener)
+	},
+
+	notify() {
+		this.listeners.forEach((listener) => listener(this.state))
+	},
+}
 
 // Usage
-Store.subscribe(state => {
-  renderItems(state.items);
-});
+Store.subscribe((state) => {
+	renderItems(state.items)
+})
 
-Store.setState({ items: newItems });
+Store.setState({ items: newItems })
 ```
 
 ## TypeScript Patterns
@@ -363,31 +365,31 @@ Store.setState({ items: newItems });
 ### Type Definitions
 
 ```typescript
-import $ from "jquery";
+import $ from 'jquery'
 
 interface PluginOptions {
-  speed?: number;
-  easing?: string;
-  onComplete?: ($element: JQuery) => void;
+	speed?: number
+	easing?: string
+	onComplete?: ($element: JQuery) => void
 }
 
 interface ApiResponse<T> {
-  data: T;
-  status: "success" | "error";
-  message?: string;
+	data: T
+	status: 'success' | 'error'
+	message?: string
 }
 
 async function fetchData<T>(url: string): Promise<T> {
-  const response = await $.ajax<ApiResponse<T>>({
-    url,
-    dataType: "json"
-  });
-  
-  if (response.status === "error") {
-    throw new Error(response.message);
-  }
-  
-  return response.data;
+	const response = await $.ajax<ApiResponse<T>>({
+		url,
+		dataType: 'json',
+	})
+
+	if (response.status === 'error') {
+		throw new Error(response.message)
+	}
+
+	return response.data
 }
 ```
 
@@ -395,21 +397,18 @@ async function fetchData<T>(url: string): Promise<T> {
 
 ```typescript
 interface ItemData {
-  id: number;
-  name: string;
+	id: number
+	name: string
 }
 
-function handleItemClick(
-  this: HTMLElement,
-  event: JQuery.ClickEvent
-): void {
-  event.preventDefault();
-  const $item = $(this);
-  const data = $item.data() as ItemData;
-  console.log(data.id, data.name);
+function handleItemClick(this: HTMLElement, event: JQuery.ClickEvent): void {
+	event.preventDefault()
+	const $item = $(this)
+	const data = $item.data() as ItemData
+	console.log(data.id, data.name)
 }
 
-$container.on("click", ".item", handleItemClick);
+$container.on('click', '.item', handleItemClick)
 ```
 
 ## Performance Checklist

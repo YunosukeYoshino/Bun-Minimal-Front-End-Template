@@ -1,7 +1,7 @@
-import { ListTodo, Plus, Trash2, X } from 'lucide-react';
-import { useState } from 'react';
-import type { TodoId } from '../../../shared/types';
-import { Button } from '../../../shared/ui/button.tsx';
+import { ListTodo, Plus, Trash2, X } from 'lucide-react'
+import { useState } from 'react'
+import type { TodoId } from '../../../shared/types'
+import { Button } from '../../../shared/ui/button.tsx'
 import {
 	Card,
 	CardContent,
@@ -9,17 +9,17 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from '../../../shared/ui/card.tsx';
-import { Checkbox } from '../../../shared/ui/checkbox.tsx';
-import { Input } from '../../../shared/ui/input.tsx';
-import { useTodos } from '../hooks/useTodos.ts';
-import type { Todo } from '../types.ts';
+} from '../../../shared/ui/card.tsx'
+import { Checkbox } from '../../../shared/ui/checkbox.tsx'
+import { Input } from '../../../shared/ui/input.tsx'
+import { useTodos } from '../hooks/useTodos.ts'
+import type { Todo } from '../types.ts'
 
 type TodoItemProps = {
-	readonly todo: Todo;
-	readonly onToggle: (id: TodoId) => void;
-	readonly onDelete: (id: TodoId) => void;
-};
+	readonly todo: Todo
+	readonly onToggle: (id: TodoId) => void
+	readonly onDelete: (id: TodoId) => void
+}
 
 function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
 	return (
@@ -46,11 +46,11 @@ function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
 				<Trash2 size={16} />
 			</Button>
 		</li>
-	);
+	)
 }
 
 export function TodoList() {
-	const [inputValue, setInputValue] = useState('');
+	const [inputValue, setInputValue] = useState('')
 	const {
 		todos,
 		addTodo,
@@ -59,13 +59,13 @@ export function TodoList() {
 		clearCompleted,
 		completedCount,
 		pendingCount,
-	} = useTodos();
+	} = useTodos()
 
 	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
-		addTodo(inputValue);
-		setInputValue('');
-	};
+		e.preventDefault()
+		addTodo(inputValue)
+		setInputValue('')
+	}
 
 	return (
 		<Card>
@@ -119,5 +119,5 @@ export function TodoList() {
 				</CardFooter>
 			)}
 		</Card>
-	);
+	)
 }

@@ -1,4 +1,4 @@
-@import url("tailwindcss");
+@import url('tailwindcss');
 
 /* ========================================
    Base Styles
@@ -12,7 +12,7 @@ html {
    ======================================== */
 @layer utilities {
 	.bg-main-image {
-		background-image: url("../images/sample.jpeg");
+		background-image: url('../images/sample.jpeg');
 		background-repeat: no-repeat;
 	}
 }
@@ -21,12 +21,12 @@ html {
    Navigation
    ======================================== */
 #navbar {
-	background-color: rgba(3, 7, 18, 0.8);
+	background-color: rgb(3 7 18 / 80%);
 	backdrop-filter: blur(8px);
 }
 
 #navbar.navbar-scrolled {
-	background-color: rgba(3, 7, 18, 0.95);
+	background-color: rgb(3 7 18 / 95%);
 }
 
 /* ========================================

@@ -1,6 +1,6 @@
 ---
 paths:
-  - "src/react/**"
+  - 'src/react/**'
 ---
 
 # React Development Instructions
@@ -30,26 +30,26 @@ src/react/
 ### shadcn/ui Component
 
 ```tsx
-import { cn } from '../../shared/utils/cn';
+import { cn } from '../../shared/utils/cn'
 
 interface Props {
-  className?: string;
+	className?: string
 }
 
 export function Component({ className, ...props }: Props) {
-  return <div className={cn('base-classes', className)} {...props} />;
+	return <div className={cn('base-classes', className)} {...props} />
 }
 ```
 
 ### Custom Hook
 
 ```tsx
-import { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react'
 
 export function useFeature(options = {}) {
-  const [state, setState] = useState(options.initialValue ?? 0);
-  const action = useCallback(() => setState(prev => prev + 1), []);
-  return { state, action };
+	const [state, setState] = useState(options.initialValue ?? 0)
+	const action = useCallback(() => setState((prev) => prev + 1), [])
+	return { state, action }
 }
 ```
 

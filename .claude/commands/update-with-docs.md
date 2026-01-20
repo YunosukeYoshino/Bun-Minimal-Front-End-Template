@@ -1,7 +1,15 @@
 ---
 description: Context7でライブラリのドキュメントを取得し、コードベースの改善点を提案
-argument-hint: "[library-name]"
-allowed-tools: ["mcp__context7__resolve-library-id", "mcp__context7__query-docs", "Read", "Glob", "Grep", "Task"]
+argument-hint: '[library-name]'
+allowed-tools:
+  [
+    'mcp__context7__resolve-library-id',
+    'mcp__context7__query-docs',
+    'Read',
+    'Glob',
+    'Grep',
+    'Task',
+  ]
 ---
 
 # ライブラリドキュメントによるコードベース改善提案
@@ -26,6 +34,7 @@ allowed-tools: ["mcp__context7__resolve-library-id", "mcp__context7__query-docs"
 ## 出力形式
 
 改善点があれば、以下の形式で計画を立てる：
+
 - 変更対象ファイル
 - 変更内容の説明
 - 優先度（高/中/低）
