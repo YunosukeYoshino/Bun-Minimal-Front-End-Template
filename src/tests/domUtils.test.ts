@@ -14,7 +14,7 @@ describe('DOM操作ユーティリティテスト', () => {
 	let testElement: HTMLElement
 
 	beforeEach(() => {
-		testElement: = document.createElement('div')
+		testElement = document.createElement('div')
 		document.body.appendChild(testElement)
 	})
 
