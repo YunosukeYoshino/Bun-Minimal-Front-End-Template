@@ -1,4 +1,4 @@
-@import url('tailwindcss');
+@import url("tailwindcss");
 
 /* ========================================
    Base Styles
@@ -12,7 +12,7 @@ html {
    ======================================== */
 @layer utilities {
 	.bg-main-image {
-		background-image: url('../images/sample.jpeg');
+		background-image: url("../images/sample.jpeg");
 		background-repeat: no-repeat;
 	}
 }
